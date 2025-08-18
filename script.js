@@ -154,8 +154,8 @@ const projectData = {
                 `
     },
     taskmanager: {
-        title: "Task Management App",
-        description: "A collaborative task management application with real-time updates and team collaboration features.",
+        title: "Software Salary Prediction",
+        description: "This Software Salary Prediction system was built as a Streamlit web application to help users estimate software developer salaries based on their experience, education, and country. Using machine learning, the system delivers accurate salary predictions while providing data exploration and visualization tools.",
         fullDescription: `
                     <div class="space-y-6">
                         <div class="h-64 bg-gradient-to-br from-green-500 to-teal-600 rounded-lg flex items-center justify-center text-8xl text-white">
@@ -166,19 +166,20 @@ const projectData = {
                             <div>
                                 <h3 class="text-xl font-bold mb-4">Project Overview</h3>
                                 <p class="text-gray-600 mb-4">
-                                    A modern task management solution designed for teams to collaborate effectively. 
-                                    Built with Vue.js and Firebase, it provides real-time synchronization across all 
-                                    devices and team members.
+                                    This Software Salary Prediction system was built as a Streamlit web application to help users estimate software developer salaries based on their experience, education, and country. Using machine learning, the system delivers accurate salary predictions while providing data exploration and visualization tools.
                                 </p>
                                 
                                 <h4 class="font-bold mb-2">Key Features:</h4>
                                 <ul class="text-gray-600 space-y-1">
-                                    <li>• Real-time collaboration</li>
-                                    <li>• Drag-and-drop task management</li>
-                                    <li>• Team member assignments</li>
-                                    <li>• Progress tracking & analytics</li>
-                                    <li>• File attachments & comments</li>
-                                    <li>• Mobile app companion</li>
+                                    Interactive Streamlit UI with easy navigation
+
+                                <li>Salary prediction using a trained ML model (saved_step.pkl)</li>
+
+                                <li>Data exploration dashboard with filtering and visualization</li>
+
+                                <li>User inputs: country, education, and years of experience</li>
+
+                                <li>Real-time predictions with instant feedback</li>
                                 </ul>
                             </div>
                             
@@ -187,23 +188,30 @@ const projectData = {
                                 <div class="space-y-4">
                                     <div>
                                         <h4 class="font-semibold">Frontend</h4>
-                                        <p class="text-gray-600">Vue.js 3, Vuex, Tailwind CSS</p>
+                                        <p class="text-gray-600">
+                                            <li>Streamlit for interactive web interface</li>
+                                            <li>Matplotlib/Seaborn for data visualization</li>
+                                        </p>
                                     </div>
                                     <div>
                                         <h4 class="font-semibold">Backend</h4>
-                                        <p class="text-gray-600">Firebase Functions, Node.js</p>
+                                        <p class="text-gray-600">
+                                            <li>Scikit-learn for preprocessing and model training</li>
+                                            <li>Trained regression model (saved with joblib/pickle)</li>
+                                            <li>Python-based API endpoints within Streamlit pages</li>
+                                        </p>
                                     </div>
                                     <div>
                                         <h4 class="font-semibold">Database</h4>
-                                        <p class="text-gray-600">Firestore (NoSQL)</p>
+                                        <p class="text-gray-600">
+                                            <li>CSV dataset of developer survey responses (Stack Overflow survey)</li>
+                                        </p>
                                     </div>
                                     <div>
-                                        <h4 class="font-semibold">Authentication</h4>
-                                        <p class="text-gray-600">Firebase Auth with Google/GitHub</p>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-semibold">Real-time</h4>
-                                        <p class="text-gray-600">Firebase Realtime Database</p>
+                                        <h4 class="font-semibold">Deployment</h4>
+                                        <p class="text-gray-600"><li>Deployed with Streamlit</li>
+
+                                        <li>Easily containerized via Docker for scalability</li></p>
                                     </div>
                                 </div>
                             </div>
@@ -213,16 +221,16 @@ const projectData = {
                             <h3 class="text-xl font-bold mb-4">Challenges & Solutions</h3>
                             <div class="space-y-3">
                                 <div>
-                                    <h4 class="font-semibold">Challenge: Real-time synchronization</h4>
-                                    <p class="text-gray-600">Used Firebase's real-time listeners to ensure all team members see updates instantly.</p>
+                                    <h4 class="font-semibold">Challenge: Handling diverse user input (countries, education levels)</h4>
+                                    <p class="text-gray-600">Applied preprocessing and categorical encoding to normalize input data.</p>
                                 </div>
                                 <div>
-                                    <h4 class="font-semibold">Challenge: Offline functionality</h4>
-                                    <p class="text-gray-600">Implemented service workers and local storage for offline task management.</p>
+                                    <h4 class="font-semibold">Challenge: Model accuracy across varying experience ranges</h4>
+                                    <p class="text-gray-600">Tuned regression models and validated results on multiple splits for robustness.</p>
                                 </div>
                                 <div>
-                                    <h4 class="font-semibold">Challenge: Complex state management</h4>
-                                    <p class="text-gray-600">Utilized Vuex with modular store structure for scalable state management.</p>
+                                    <h4 class="font-semibold">Challenge: Providing a user-friendly interface for non-technical users</h4>
+                                    <p class="text-gray-600">Built a clean, interactive Streamlit UI with separate pages for exploration and prediction.</p>
                                 </div>
                             </div>
                         </div>
@@ -232,8 +240,8 @@ const projectData = {
                 `
     },
     analytics: {
-        title: "Analytics Dashboard",
-        description: "A comprehensive analytics dashboard with interactive charts and real-time data visualization.",
+        title: "SAHAYAK Teacher Assistant",
+        description: "A comprehensive teacher assistant app designed to simplify lesson planning and boost engagement.",
         fullDescription: `
                     <div class="space-y-6">
                         <div class="h-64 bg-gradient-to-br from-orange-500 to-red-600 rounded-lg flex items-center justify-center text-8xl text-white">
@@ -244,19 +252,20 @@ const projectData = {
                             <div>
                                 <h3 class="text-xl font-bold mb-4">Project Overview</h3>
                                 <p class="text-gray-600 mb-4">
-                                    A powerful analytics dashboard that transforms complex data into actionable insights. 
-                                    Built with React and D3.js, it provides interactive visualizations and real-time 
-                                    data processing capabilities.
+                                    SAHAYAK is a comprehensive teacher assistant app designed to simplify lesson planning and boost engagement. With features like QR-based PDFs, voice input, multimodal story export, student profiles, and analytics, it empowers educators to deliver modern, inclusive learning experiences
                                 </p>
                                 
                                 <h4 class="font-bold mb-2">Key Features:</h4>
                                 <ul class="text-gray-600 space-y-1">
-                                    <li>• Interactive data visualizations</li>
-                                    <li>• Real-time data streaming</li>
-                                    <li>• Custom dashboard creation</li>
-                                    <li>• Export & sharing capabilities</li>
-                                    <li>• Advanced filtering & drilling</li>
-                                    <li>• Multi-data source integration</li>
+                                    <li>PDF generation for lessons and resources</li>
+
+                                    <li>Voice input to quickly create content hands-free</li>
+
+                                    <li>Multimodal story export (text, images, audio) for diverse learning styles</li>
+
+                                    <li>Student profile management for tracking progress</li>
+
+                                    <li>Built-in analytics to monitor engagement and effectiveness</li>
                                 </ul>
                             </div>
                             
@@ -265,23 +274,20 @@ const projectData = {
                                 <div class="space-y-4">
                                     <div>
                                         <h4 class="font-semibold">Frontend</h4>
-                                        <p class="text-gray-600">React, D3.js, Chart.js</p>
+                                        <p class="text-gray-600">Typescript, JavaScript, React</p>
                                     </div>
                                     <div>
                                         <h4 class="font-semibold">Backend</h4>
-                                        <p class="text-gray-600">Express.js, Socket.io</p>
+                                        <p class="text-gray-600">Python, Flask, Firebase</p>
                                     </div>
                                     <div>
                                         <h4 class="font-semibold">Database</h4>
-                                        <p class="text-gray-600">PostgreSQL, Redis cache</p>
+                                        <p class="text-gray-600">Firebase, Firestore</p>
                                     </div>
-                                    <div>
-                                        <h4 class="font-semibold">Data Processing</h4>
-                                        <p class="text-gray-600">Apache Kafka, ETL pipelines</p>
-                                    </div>
+                                
                                     <div>
                                         <h4 class="font-semibold">Deployment</h4>
-                                        <p class="text-gray-600">Kubernetes, AWS EKS</p>
+                                        <p class="text-gray-600">Docker, GCP</p>
                                     </div>
                                 </div>
                             </div>
@@ -291,16 +297,16 @@ const projectData = {
                             <h3 class="text-xl font-bold mb-4">Challenges & Solutions</h3>
                             <div class="space-y-3">
                                 <div>
-                                    <h4 class="font-semibold">Challenge: Large dataset visualization</h4>
-                                    <p class="text-gray-600">Implemented data virtualization and progressive loading for smooth performance with millions of data points.</p>
+                                    <h4 class="font-semibold">Challenge: Supporting varied learning styles</h4>
+                                    <p class="text-gray-600">IOffered multimodal export combining text, images, and audio to engage diverse learners.</p>
                                 </div>
                                 <div>
-                                    <h4 class="font-semibold">Challenge: Real-time updates</h4>
-                                    <p class="text-gray-600">Used WebSocket connections with efficient data streaming to update charts without full page reloads.</p>
+                                    <h4 class="font-semibold">Challenge: Managing student personalization</h4>
+                                    <p class="text-gray-600">Introduced student profiles and analytics to tailor teaching based on individual needs and monitor engagement.</p>
                                 </div>
                                 <div>
-                                    <h4 class="font-semibold">Challenge: Cross-browser compatibility</h4>
-                                    <p class="text-gray-600">Implemented fallback rendering methods and polyfills for consistent experience across all browsers.</p>
+                                    <h4 class="font-semibold">Challenge: Inclusive, accessible content</h4>
+                                    <p class="text-gray-600">Integrated translation, text-to-speech, and doodle/image generation to support multiple languages and sensory modalities.</p>
                                 </div>
                             </div>
                         </div>
