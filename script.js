@@ -106,7 +106,7 @@ const projectData = {
                                     </div>
                                     <div>
                                         <h4 class="font-semibold">Backend</h4>
-                                        <p class="text-gray-600">Local ML models: TF-IDF (Scikit-learn), FAISS + BERT embeddings (Transformers)
+                                        <p class="text-gray-600"><li>Local ML models: TF-IDF (Scikit-learn), FAISS + BERT embeddings (Transformers)</li>
 
                                         <li>Google Gemini API: Personalized recommendation explanations & natural language queries</li>
 
@@ -274,20 +274,20 @@ const projectData = {
                                 <div class="space-y-4">
                                     <div>
                                         <h4 class="font-semibold">Frontend</h4>
-                                        <p class="text-gray-600">Typescript, JavaScript, React</p>
+                                        <p class="text-gray-600"><li>Typescript, JavaScript, React</li></p>
                                     </div>
                                     <div>
                                         <h4 class="font-semibold">Backend</h4>
-                                        <p class="text-gray-600">Python, Flask, Firebase</p>
+                                        <p class="text-gray-600"><li>Python, Flask, Firebase</li></p>
                                     </div>
                                     <div>
                                         <h4 class="font-semibold">Database</h4>
-                                        <p class="text-gray-600">Firebase, Firestore</p>
+                                        <p class="text-gray-600"><li>Firebase, Firestore</li></p>
                                     </div>
                                 
                                     <div>
                                         <h4 class="font-semibold">Deployment</h4>
-                                        <p class="text-gray-600">Docker, GCP</p>
+                                        <p class="text-gray-600"><li>Docker, GCP</li></p>
                                     </div>
                                 </div>
                             </div>
