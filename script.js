@@ -3,93 +3,93 @@ const mobileMenuBtn = document.getElementById('mobile-menu-btn');
 const mobileMenu = document.getElementById('mobile-menu');
 
 mobileMenuBtn.addEventListener('click', () => {
-  mobileMenu.classList.toggle('hidden');
+    mobileMenu.classList.toggle('hidden');
 });
 
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      target.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }
-    // Close mobile menu if open
-    mobileMenu.classList.add('hidden');
-  });
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+        // Close mobile menu if open
+        mobileMenu.classList.add('hidden');
+    });
 });
 
 // Contact form submission
 // ✅ Contact Form Submission to Google Sheets
 document.getElementById("contact-form").addEventListener("submit", async function (e) {
-  e.preventDefault();
+    e.preventDefault();
 
-  const form = e.target;
-  const statusEl = document.getElementById("form-status");
-  statusEl.innerText = "⏳ Sending...";
+    const form = e.target;
+    const statusEl = document.getElementById("form-status");
+    statusEl.innerText = "⏳ Sending...";
 
-  try {
-    const response = await fetch(form.action, {
-      method: form.method,
-      body: new FormData(form),
-      headers: { 'Accept': 'application/json' }
-    });
+    try {
+        const response = await fetch(form.action, {
+            method: form.method,
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+        });
 
-    if (response.ok) {
-      statusEl.innerText = "✅ Message sent successfully!";
-      form.reset();
-    } else {
-      statusEl.innerText = "❌ Error sending message. Try again.";
+        if (response.ok) {
+            statusEl.innerText = "✅ Message sent successfully!";
+            form.reset();
+        } else {
+            statusEl.innerText = "❌ Error sending message. Try again.";
+        }
+    } catch (error) {
+        console.error("Error!", error);
+        statusEl.innerText = "⚠️ Network error. Please try later.";
     }
-  } catch (error) {
-    console.error("Error!", error);
-    statusEl.innerText = "⚠️ Network error. Please try later.";
-  }
 });
 
 
 
 // Add scroll effect to navigation
 window.addEventListener('scroll', () => {
-  const nav = document.querySelector('nav');
-  if (window.scrollY > 100) {
-    nav.classList.add('bg-white/95');
-  } else {
-    nav.classList.remove('bg-white/95');
-  }
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 100) {
+        nav.classList.add('bg-white/95');
+    } else {
+        nav.classList.remove('bg-white/95');
+    }
 });
 
 // Project modal functionality
 const projectData = {
-  ecommerce: {
-    title: "E-Commerce Platform",
-    description: "A comprehensive e-commerce solution built with modern technologies to provide seamless shopping experiences.",
-    fullDescription: `
+    ecommerce: {
+        title: "Book Recommendation System",
+        description: "A comprehensive e-commerce solution built with modern technologies to provide seamless shopping experiences.",
+        fullDescription: `
                     <div class="space-y-6">
                         <div class="h-64 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center text-8xl text-white">
-                            🛒
+                            📖
                         </div>
                         
                         <div class="grid md:grid-cols-2 gap-8">
                             <div>
                                 <h3 class="text-xl font-bold mb-4">Project Overview</h3>
                                 <p class="text-gray-600 mb-4">
-                                    This e-commerce platform was designed to handle high-traffic loads while providing 
-                                    an intuitive shopping experience. Built with React and Node.js, it features real-time 
-                                    inventory management, secure payment processing, and advanced analytics.
+                                    This Book Recommendation System was developed as a desktop application using Tkinter, integrated with Google Cloud APIs to provide intelligent book recommendations, search, and analytics. The system combines a local recommendation engine with Google services like Gemini API (for NLP), Books API, and Firebase for a seamless and scalable experience.
                                 </p>
                                 
                                 <h4 class="font-bold mb-2">Key Features:</h4>
                                 <ul class="text-gray-600 space-y-1">
-                                    <li>• Real-time inventory tracking</li>
-                                    <li>• Secure payment gateway integration</li>
-                                    <li>• Advanced search and filtering</li>
-                                    <li>• Mobile-responsive design</li>
-                                    <li>• Admin dashboard with analytics</li>
-                                    <li>• Multi-vendor support</li>
+                                    User-friendly Tkinter GUI for book browsing and recommendations
+
+                                <li>Google Books API for retrieving metadata, covers, and reviews</li>
+                                <li>Gemini API (LLM) for generating personalized summaries and book suggestions</li>
+                                <li>Content-based + Embedding-based hybrid recommendation system</li>
+                                <li>Voice-based search using Google Speech-to-Text</li>
+                                <li>Admin dashboard with analytics (using Firebase/BigQuery)</li>
+                                <li>Cross-platform desktop app with cloud-powered intelligence</li>
                                 </ul>
                             </div>
                             
@@ -98,23 +98,33 @@ const projectData = {
                                 <div class="space-y-4">
                                     <div>
                                         <h4 class="font-semibold">Frontend</h4>
-                                        <p class="text-gray-600">React, Redux, Tailwind CSS</p>
+                                        <p class="text-gray-600">Tkinter for GUI
+
+                                        <li>Matplotlib/Seaborn for analytics visualization</li>
+
+                                        <li>Google Fonts API (for modern UI styling in Tkinter)</li></p>
                                     </div>
                                     <div>
                                         <h4 class="font-semibold">Backend</h4>
-                                        <p class="text-gray-600">Node.js, Express.js, JWT Authentication</p>
-                                    </div>
+                                        <p class="text-gray-600">Local ML models: TF-IDF (Scikit-learn), FAISS + BERT embeddings (Transformers)
+
+                                        <li>Google Gemini API: Personalized recommendation explanations & natural language queries</li>
+
+                                        <li>Google Books API: Metadata, author details, and book previews</li>
+
+                                        <li>Google TTS/STT API: Text-to-speech book summaries & speech-based search</li></p>
+                                                                            </div>
                                     <div>
                                         <h4 class="font-semibold">Database</h4>
-                                        <p class="text-gray-600">MongoDB with Mongoose ODM</p>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-semibold">Payment</h4>
-                                        <p class="text-gray-600">Stripe API integration</p>
+                                        <p class="text-gray-600">MongoDB</p>
                                     </div>
                                     <div>
                                         <h4 class="font-semibold">Deployment</h4>
-                                        <p class="text-gray-600">AWS EC2, Docker containers</p>
+                                        <p class="text-gray-600">Packaged as standalone app via PyInstaller
+
+                                        <li>Firebase Hosting (for backend APIs if needed)</li>
+
+                                        <li>Google Cloud Storage (book metadata/images caching)</li></p>
                                     </div>
                                 </div>
                             </div>
@@ -124,35 +134,29 @@ const projectData = {
                             <h3 class="text-xl font-bold mb-4">Challenges & Solutions</h3>
                             <div class="space-y-3">
                                 <div>
-                                    <h4 class="font-semibold">Challenge: Real-time inventory management</h4>
-                                    <p class="text-gray-600">Implemented WebSocket connections for live inventory updates across all user sessions.</p>
+                                    <h4 class="font-semibold">Challenge: Rich metadata and book availability</h4>
+                                    <p class="text-gray-600">Used Google Books API to fetch real-time metadata, book previews, and cover images.</p>
                                 </div>
                                 <div>
-                                    <h4 class="font-semibold">Challenge: Payment security</h4>
-                                    <p class="text-gray-600">Integrated Stripe's secure payment processing with PCI compliance standards.</p>
+                                    <h4 class="font-semibold">Challenge: Personalization beyond keyword search</h4>
+                                    <p class="text-gray-600">Integrated Gemini API to understand user queries in natural language and provide contextual book suggestions.</p>
                                 </div>
                                 <div>
-                                    <h4 class="font-semibold">Challenge: Performance optimization</h4>
-                                    <p class="text-gray-600">Implemented lazy loading, image optimization, and Redis caching for faster load times.</p>
+                                    <h4 class="font-semibold">Challenge: Making the app interactive (text)</h4>
+                                    <p class="text-gray-600">Implemented lazy loading, image optimization for faster load times.</p>
                                 </div>
                             </div>
                         </div>
-                        
-                        <div class="flex space-x-4">
-                            <button class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
-                                Live Demo
-                            </button>
-                            <button class="border border-gray-300 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-50 transition-colors">
-                                View Code
-                            </button>
+
+                       
                         </div>
                     </div>
                 `
-  },
-  taskmanager: {
-    title: "Task Management App",
-    description: "A collaborative task management application with real-time updates and team collaboration features.",
-    fullDescription: `
+    },
+    taskmanager: {
+        title: "Task Management App",
+        description: "A collaborative task management application with real-time updates and team collaboration features.",
+        fullDescription: `
                     <div class="space-y-6">
                         <div class="h-64 bg-gradient-to-br from-green-500 to-teal-600 rounded-lg flex items-center justify-center text-8xl text-white">
                             📱
@@ -223,21 +227,14 @@ const projectData = {
                             </div>
                         </div>
                         
-                        <div class="flex space-x-4">
-                            <button class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors">
-                                Live Demo
-                            </button>
-                            <button class="border border-gray-300 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-50 transition-colors">
-                                View Code
-                            </button>
-                        </div>
+                        
                     </div>
                 `
-  },
-  analytics: {
-    title: "Analytics Dashboard",
-    description: "A comprehensive analytics dashboard with interactive charts and real-time data visualization.",
-    fullDescription: `
+    },
+    analytics: {
+        title: "Analytics Dashboard",
+        description: "A comprehensive analytics dashboard with interactive charts and real-time data visualization.",
+        fullDescription: `
                     <div class="space-y-6">
                         <div class="h-64 bg-gradient-to-br from-orange-500 to-red-600 rounded-lg flex items-center justify-center text-8xl text-white">
                             📊
@@ -308,46 +305,40 @@ const projectData = {
                             </div>
                         </div>
                         
-                        <div class="flex space-x-4">
-                            <button class="bg-orange-600 text-white px-6 py-3 rounded-lg hover:bg-orange-700 transition-colors">
-                                Live Demo
-                            </button>
-                            <button class="border border-gray-300 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-50 transition-colors">
-                                View Code
-                            </button>
+                        
                         </div>
                     </div>
                 `
-  }
+    }
 };
 
 function openProject(projectId) {
-  const project = projectData[projectId];
-  if (project) {
-    document.getElementById('modal-title').textContent = project.title;
-    document.getElementById('modal-content').innerHTML = project.fullDescription;
-    document.getElementById('project-modal').classList.remove('hidden');
-    document.body.style.overflow = 'hidden'; // Prevent background scrolling
-  }
+    const project = projectData[projectId];
+    if (project) {
+        document.getElementById('modal-title').textContent = project.title;
+        document.getElementById('modal-content').innerHTML = project.fullDescription;
+        document.getElementById('project-modal').classList.remove('hidden');
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    }
 }
 
 function closeProject() {
-  document.getElementById('project-modal').classList.add('hidden');
-  document.body.style.overflow = 'auto'; // Restore scrolling
+    document.getElementById('project-modal').classList.add('hidden');
+    document.body.style.overflow = 'auto'; // Restore scrolling
 }
 
 // Close modal when clicking outside
 document.getElementById('project-modal').addEventListener('click', function (e) {
-  if (e.target === this) {
-    closeProject();
-  }
+    if (e.target === this) {
+        closeProject();
+    }
 });
 
 // Close modal with Escape key
 document.addEventListener('keydown', function (e) {
-  if (e.key === 'Escape') {
-    closeProject();
-  }
+    if (e.key === 'Escape') {
+        closeProject();
+    }
 });
 
 (function () { function c() { var b = a.contentDocument || a.contentWindow.document; if (b) { var d = b.createElement('script'); d.innerHTML = "window.__CF$cv$params={r:'97071052d5deff70',t:'MTc1NTQxMTYwOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);"; b.getElementsByTagName('head')[0].appendChild(d) } } if (document.body) { var a = document.createElement('iframe'); a.height = 1; a.width = 1; a.style.position = 'absolute'; a.style.top = 0; a.style.left = 0; a.style.border = 'none'; a.style.visibility = 'hidden'; document.body.appendChild(a); if ('loading' !== document.readyState) c(); else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c); else { var e = document.onreadystatechange || function () { }; document.onreadystatechange = function (b) { e(b); 'loading' !== document.readyState && (document.onreadystatechange = e, c()) } } } })();
