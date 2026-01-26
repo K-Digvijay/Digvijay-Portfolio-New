@@ -1,0 +1,126 @@
+{
+  // =====================================================================================
+  // UI / THEME
+  // =====================================================================================
+"workbench.colorTheme": "Abyss",
+  "workbench.sideBar.location": "right",
+  "workbench.editor.empty.hint": "hidden",
+  "window.autoDetectColorScheme": true,
+  "window.systemColorTheme": "light",
+
+  // Custom Colors
+  "workbench.colorCustomizations": {
+    "editor.background": "#000000",
+    "sideBar.background": "#000000",
+    "activityBar.background": "#000000",
+    "panel.background": "#000000",
+    "terminal.background": "#000000",
+    "editorLineNumber.foreground": "#c6c6c6",
+    "editorLineNumber.activeForeground": "#f6ff00"
+  },
+
+  // =====================================================================================
+  // FONT & DISPLAY
+  // =====================================================================================
+  "editor.fontFamily": "JetBrains Mono",
+  "editor.fontSize": 15,
+  "editor.fontLigatures": false,
+  "editor.wordWrap": "on",
+  "editor.renderWhitespace": "none",
+  "editor.minimap.enabled": false,
+  "breadcrumbs.enabled": true,
+
+  // CodeLens
+  "editor.codeLensFontFamily": "JetBrains Mono",
+
+  // =====================================================================================
+  // TERMINAL
+  // =====================================================================================
+  "terminal.integrated.fontFamily": "JetBrains Mono",
+  "terminal.integrated.fontLigatures": true,
+  "terminal.integrated.suggest.enabled": true,
+
+  // =====================================================================================
+  // PYTHON CONFIG
+  // =====================================================================================
+  "python.defaultInterpreterPath": "c:\\Users\\dkewa\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  "python.createEnvironment.trigger": "off",
+  "python.analysis.inlayHints.functionReturnTypes": true,
+
+  // =====================================================================================
+  // RUST CONFIG
+  // =====================================================================================
+  "[rust]": {
+    "editor.defaultFormatter": "rust-lang.rust-analyzer"
+  },
+
+  // =====================================================================================
+  // JUPYTER
+  // =====================================================================================
+  "notebook.formatOnSave.enabled": true,
+  "notebook.output.wordWrap": true,
+  "notebook.lineNumbers": "on",
+  "notebook.cellToolbarLocation": {
+    "default": "right",
+    "jupyter-notebook": "right"
+  },
+  "jupyter.askForKernelRestart": false,
+  "jupyter.interactiveWindow.textEditor.executeSelection": true,
+  "jupyter.interactiveWindow.creationMode": "perFile",
+  "jupyter.widgetScriptSources": [
+    "jsdelivr.com",
+    "unpkg.com"
+  ],
+
+  // =====================================================================================
+  // CODE RUNNER / EXECUTION
+  // =====================================================================================
+  "code-runner.runInTerminal": true,
+  "code-runner.enableAppInsights": false,
+
+  // =====================================================================================
+  // GIT / GITHUB / COPILOT
+  // =====================================================================================
+  "git.confirmSync": false,
+  "git.openRepositoryInParentFolders": "never",
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false,
+    "css": false,
+    "python": true,
+    "jsonc": false
+  },
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "gitlens.ai.model": "vscode",
+  "gitlens.ai.vscode.model": "copilot:gpt-4.1",
+
+  // =====================================================================================
+  // EDITOR BEHAVIOR
+  // =====================================================================================
+  "editor.formatOnSave": false,
+  "editor.formatOnType": true,
+  "editor.guides.bracketPairs": true,
+  "editor.guides.bracketPairsHorizontal": true,
+  "editor.scrollbar.horizontal": "hidden",
+
+  // =====================================================================================
+  // MISC UTILITIES
+  // =====================================================================================
+  "files.autoSave": "afterDelay",
+  "explorer.confirmDelete": false,
+  "extensions.ignoreRecommendations": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "inlineChat.mode": "preview",
+  "console-ninja.featureSet": "Community",
+  "console-ninja.toolsToEnableSupportAutomaticallyFor": {
+    "live-preview-extension": true,
+    "live-server-extension": true
+  },
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.preferredDarkColorTheme": "Ayu Dark"
+}
