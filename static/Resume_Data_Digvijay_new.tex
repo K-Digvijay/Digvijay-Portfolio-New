@@ -1,0 +1,201 @@
+%-------------------------
+% Resume in LaTeX
+% Author: Digvijay Kewale
+%-------------------------
+
+\documentclass[letterpaper,12pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage[T1]{fontenc}
+\usepackage{mathptmx}   % Times New Roman
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Section formatting
+\titleformat{\section}{
+  \vspace{-4pt}\large\bfseries\raggedright
+}{}{0em}{}[\color{black}\titlerule\vspace{-5pt}]
+
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+
+\newcommand{\resumeItem}[1]{
+  \item{#1 \vspace{-2pt}}
+}
+
+% Standard entry: bold name left, date right | role left, location right
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textbf{#3} & #4 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+% Education entry: degree bold left, dates right | university left, grade right
+\newcommand{\resumeEduEntry}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      #3 & \textbf{#4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      #1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    {\Huge\bfseries Digvijay Kewale} \\ \vspace{5pt}
+    \small 9373319912 $|$
+    \href{mailto:digvijay.kewale@gmail.com}{digvijay.kewale@gmail.com} $|$
+    \href{http://www.linkedin.com/in/digvijaykewale}{linkedin.com/in/digvijaykewale} $|$
+    \href{https://k-digvijay.github.io/Digvijay-Portfolio-New/}{Portfolio} $|$
+    Bangalore, Karnataka
+\end{center}
+
+%-----------SUMMARY-----------
+\section{Summary}
+Having total 4 years of experience with 2+ years of hands-on experience in machine learning and data analytics. Skilled in Python, Scikit-Learn, TensorFlow, Power BI currently pursuing M. Tech in Data Science and Machine Learning and driving AI solutions through Hackathons and real world projects.
+
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+\begin{itemize}[leftmargin=0.15in, label={}, itemsep=2pt]
+    \item \textbf{Programming \& Libraries:} Python 3.0, NumPy, Pandas, Matplotlib, Scikit-learn, Seaborn
+    \item \textbf{Machine Learning \& AI:} Deep Learning, Neural Networks, NLP, TensorFlow, Keras, Transfer Learning
+    \item \textbf{Databases \& Analytics Tools:} MySQL, Power BI, MS Excel, MongoDB, Firebase, Firestore
+    \item \textbf{Deployment \& Cloud:} Flask, Streamlit, Docker, Git, GitHub Actions, Google Cloud
+    \item \textbf{Professional Skills:} Team Leadership, Collaboration, Problem-Solving
+\end{itemize}
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+\resumeSubHeadingListStart
+
+  \resumeSubheading
+    {Capgemini Engineering}{May 2023 -- Present}
+    {Associate Engineer II}{Bangalore, Karnataka}
+  \resumeItemListStart
+    \resumeItem{Supported data analytics initiatives using \textbf{Python (Pandas, NumPy)} and \textbf{MySQL} for data extraction, transformation, and reporting across project deliverables.}
+    \resumeItem{Developed and maintained \textbf{Power BI dashboards} and \textbf{Matplotlib/Seaborn} visualizations to present data-driven insights to internal teams and stakeholders.}
+    \resumeItem{Assisted in exploratory data analysis and model evaluation tasks, applying \textbf{Scikit-learn} for baseline ML experiments and performance benchmarking.}
+    \resumeItem{Collaborated with cross-functional teams to understand business requirements and translate them into structured data workflows and analytical reports.}
+  \resumeItemListEnd
+
+  \resumeSubheading
+    {Sutra Systems India Pvt. Ltd.}{Nov 2021 -- May 2023}
+    {Design Engineer}{Pune, Maharashtra}
+  \resumeItemListStart
+    \resumeItem{Project: Galley, Palmet, Stowage --- handled large assemblies and systems (electrical, water piping, air routing, cooling) and GA drawings for Airbus A330, A320, A380 and Boeing. Created 3D modeling and drafting of sheet metal and milling parts.}
+    \resumeItem{Created drafting and Model Based Definitions (MBD) using PTC Creo 4.0 and operated Wind-chill PLM Software. Responsible for Engineering Changes and documentation.}
+  \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+%-----------EDUCATION-----------
+\section{Education}
+\resumeSubHeadingListStart
+
+  \resumeEduEntry
+    {M.Tech in Data Science and Machine Learning}{Jan 2024 -- March 2026}
+    {PES University, Bangalore, Karnataka}{CGPA: 9.0}
+
+  \resumeEduEntry
+    {B.E. in Mechanical Engineering}{Aug 2012 -- Sep 2015}
+    {G.H. Raisoni Academy of Engineering and Technology, Nagpur (RTMNU)}{62.8\%}
+
+\resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Projects}
+\resumeSubHeadingListStart
+
+  \resumeProjectHeading
+    {\textbf{Knowledge Grounded Conversational Agent using LLM and RAG} $|$ M.Tech Project, PES University}{}
+  \resumeItemListStart
+    \resumeItem{Built an end-to-end \textbf{Multimodal RAG pipeline} combining FAISS-based dense retrieval, BGE embeddings, cross-encoder reranking, and \textbf{Gemini 2.0 Flash} for grounded response generation --- achieving \textbf{41\% hallucination reduction} vs. vanilla LLM and \textbf{91\% top-3 retrieval relevance} after reranking.}
+    \resumeItem{Extended text-only RAG to \textbf{multimodal} by integrating \textbf{CLIP vision-language embeddings} for image retrieval, enabling the agent to answer queries grounded in both documents and figures simultaneously.}
+    \resumeItem{Deployed a \textbf{Streamlit web app} with Text-to-Speech support; modular architecture scaled seamlessly from text RAG to multimodal RAG with human evaluation scores of \textbf{4.7/5 factual grounding} and \textbf{4.8/5 fluency}.}
+  \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\textbf{Customer360: Turning Data into Insights using Recommendation System} $|$ M.Tech Project, PES University}{}
+  \resumeItemListStart
+    \resumeItem{Developed a scalable recommendation system combining \textbf{K-Means clustering} for user segmentation and \textbf{SVD-based collaborative filtering}, delivering context-aware recommendations.}
+    \resumeItem{Hybrid K-Means + SVD pipeline showed best performance; proposed \textbf{FAISS} integration for low-latency, large-scale retrieval.}
+    \resumeItem{Planned enhancements include \textbf{BERT embeddings} for semantic understanding, user feedback mechanisms, and multilingual support.}
+  \resumeItemListEnd
+
+
+%-----------HACKATHONS-----------
+\section{Hackathons}
+\resumeSubHeadingListStart
+
+  \resumeProjectHeading
+    {\textbf{Sahayak AI} $|$ Google Cloud Agentic AI Day Hackathon powered by Hack2Skill}{}
+  \resumeItemListStart
+    \resumeItem{Developed an \textbf{AI-powered teaching assistant} to support multi-grade classrooms in India, reducing teacher workload and enabling \textbf{personalized student learning}.}
+    \resumeItem{Designed scalable architecture on \textbf{Google Cloud}: Firebase Authentication, Firestore Database, and Cloud Functions.}
+    \resumeItem{Integrated \textbf{Gemini API} and \textbf{Dialogflow ES} for real-time insights and conversational support.}
+    \resumeItem{Built \textbf{React dashboard frontend} with secure data access for teachers.}
+    \resumeItem{Automated student performance tracking, enabling \textbf{40\% faster intervention} for struggling learners.}
+  \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\textbf{Predicting Employee Attrition for a Fast-Growing Company}}{}
+  \resumeItemListStart
+    \resumeItem{Developed a machine learning model to proactively predict employee attrition based on various employee attributes, helping HR teams take preventive measures to retain talent.}
+    \resumeItem{Built and evaluated multiple models using Accuracy as the primary metric. \textbf{RandomForestClassifier} performed best among all evaluated models.}
+  \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+%-------------------------------------------
+\end{document}
