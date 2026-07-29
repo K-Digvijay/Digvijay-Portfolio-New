@@ -1,352 +1,357 @@
+// Digvijay Kewale - AI Engineer Portfolio Logic
+
+// Canvas Particle Mesh Animation (AI Neural Grid Effect)
+(function initCanvas() {
+    const canvas = document.createElement('canvas');
+    canvas.id = 'bg-canvas';
+    document.body.appendChild(canvas);
+
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+    });
+
+    const particles = [];
+    const numParticles = Math.min(Math.floor(width / 25), 55);
+
+    for (let i = 0; i < numParticles; i++) {
+        particles.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            vx: (Math.random() - 0.5) * 0.6,
+            vy: (Math.random() - 0.5) * 0.6,
+            radius: Math.random() * 1.8 + 1
+        });
+    }
+
+    let mouse = { x: null, y: null, maxDist: 140 };
+    window.addEventListener('mousemove', (e) => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+    });
+    window.addEventListener('mouseleave', () => {
+        mouse.x = null;
+        mouse.y = null;
+    });
+
+    function animate() {
+        ctx.clearRect(0, 0, width, height);
+
+        // Draw connecting lines
+        for (let i = 0; i < particles.length; i++) {
+            const p1 = particles[i];
+
+            // Move
+            p1.x += p1.vx;
+            p1.y += p1.vy;
+
+            if (p1.x < 0 || p1.x > width) p1.vx *= -1;
+            if (p1.y < 0 || p1.y > height) p1.vy *= -1;
+
+            // Render node
+            ctx.beginPath();
+            ctx.arc(p1.x, p1.y, p1.radius, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(56, 189, 248, 0.4)';
+            ctx.fill();
+
+            // Connect to nearby nodes
+            for (let j = i + 1; j < particles.length; j++) {
+                const p2 = particles[j];
+                const dx = p1.x - p2.x;
+                const dy = p1.y - p2.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+
+                if (dist < 120) {
+                    ctx.beginPath();
+                    ctx.moveTo(p1.x, p1.y);
+                    ctx.lineTo(p2.x, p2.y);
+                    ctx.strokeStyle = `rgba(56, 189, 248, ${0.15 * (1 - dist / 120)})`;
+                    ctx.lineWidth = 0.6;
+                    ctx.stroke();
+                }
+            }
+
+            // Mouse interaction line
+            if (mouse.x && mouse.y) {
+                const mdx = p1.x - mouse.x;
+                const mdy = p1.y - mouse.y;
+                const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
+                if (mdist < mouse.maxDist) {
+                    ctx.beginPath();
+                    ctx.moveTo(p1.x, p1.y);
+                    ctx.lineTo(mouse.x, mouse.y);
+                    ctx.strokeStyle = `rgba(129, 140, 248, ${0.25 * (1 - mdist / mouse.maxDist)})`;
+                    ctx.lineWidth = 0.8;
+                    ctx.stroke();
+                }
+            }
+        }
+
+        requestAnimationFrame(animate);
+    }
+    animate();
+})();
+
 // Mobile menu toggle
 const mobileMenuBtn = document.getElementById('mobile-menu-btn');
 const mobileMenu = document.getElementById('mobile-menu');
 
-mobileMenuBtn.addEventListener('click', () => {
-    mobileMenu.classList.toggle('hidden');
-});
+if (mobileMenuBtn && mobileMenu) {
+    mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+}
 
-// Smooth scrolling for navigation links
+// Smooth scrolling and section link highlight
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+        const href = this.getAttribute('href');
+        if (href.startsWith('#') && href.length > 1) {
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+            if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+            }
         }
-        // Close mobile menu if open
-        mobileMenu.classList.add('hidden');
     });
 });
 
-// Contact form submission
-// ✅ Contact Form Submission to Google Sheets
-document.getElementById("contact-form").addEventListener("submit", async function (e) {
-    e.preventDefault();
-
-    const form = e.target;
-    const statusEl = document.getElementById("form-status");
-    statusEl.innerText = "⏳ Sending...";
-
-    try {
-        const response = await fetch(form.action, {
-            method: form.method,
-            body: new FormData(form),
-            headers: { 'Accept': 'application/json' }
-        });
-
-        if (response.ok) {
-            statusEl.innerText = "✅ Message sent successfully!";
-            form.reset();
-        } else {
-            statusEl.innerText = "❌ Error sending message. Try again.";
-        }
-    } catch (error) {
-        console.error("Error!", error);
-        statusEl.innerText = "⚠️ Network error. Please try later.";
-    }
-});
-
-
-
-// Add scroll effect to navigation
+// Scroll navbar background change & active link update
 window.addEventListener('scroll', () => {
     const nav = document.querySelector('nav');
-    if (window.scrollY > 100) {
-        nav.classList.add('bg-white/95');
-    } else {
-        nav.classList.remove('bg-white/95');
+    if (nav) {
+        if (window.scrollY > 50) {
+            nav.classList.add('bg-slate-950/90', 'border-slate-800/80', 'shadow-lg');
+            nav.classList.remove('bg-slate-950/40', 'border-transparent');
+        } else {
+            nav.classList.remove('bg-slate-950/90', 'border-slate-800/80', 'shadow-lg');
+            nav.classList.add('bg-slate-950/40', 'border-transparent');
+        }
     }
 });
 
-// Project modal functionality
+// Contact Form Submission (Formspree)
+const contactForm = document.getElementById("contact-form");
+if (contactForm) {
+    contactForm.addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        const form = e.target;
+        const statusEl = document.getElementById("form-status");
+        if (statusEl) {
+            statusEl.innerHTML = `<span class="inline-flex items-center gap-2 text-cyan-400 font-medium">
+                <svg class="animate-spin h-4 w-4 text-cyan-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg> Sending message...
+            </span>`;
+        }
+
+        try {
+            const response = await fetch(form.action, {
+                method: form.method,
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
+            });
+
+            if (response.ok) {
+                if (statusEl) {
+                    statusEl.innerHTML = `<span class="text-emerald-400 font-medium bg-emerald-950/50 border border-emerald-500/30 px-4 py-2 rounded-lg inline-block">
+                        ✨ Message sent successfully! I will get back to you shortly.
+                    </span>`;
+                }
+                form.reset();
+            } else {
+                if (statusEl) {
+                    statusEl.innerHTML = `<span class="text-rose-400 font-medium">❌ Unable to send message. Please try directly via email: digvijay.kewale@gmail.com</span>`;
+                }
+            }
+        } catch (error) {
+            console.error("Form error:", error);
+            if (statusEl) {
+                statusEl.innerHTML = `<span class="text-rose-400 font-medium">⚠️ Connection error. Please try again or email directly.</span>`;
+            }
+        }
+    });
+}
+
+// Project Modal Data & Dynamic Loading
 const projectData = {
-    ecommerce: {
+    bookrec: {
         title: "Book Recommendation System",
-        description: "A comprehensive e-commerce solution built with modern technologies to provide seamless shopping experiences.",
-        fullDescription: `
-                    <div class="space-y-6">
-                        <div class="h-64 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center text-8xl text-white">
-                            📖
-                        </div>
-                        
-                        <div class="grid md:grid-cols-2 gap-8">
-                            <div>
-                                <h3 class="text-xl font-bold mb-4">Project Overview</h3>
-                                <p class="text-gray-600 mb-4">
-                                    This Book Recommendation System was developed as a desktop application using Tkinter, integrated with Google Cloud APIs to provide intelligent book recommendations, search, and analytics. The system combines a local recommendation engine with Google services like Gemini API (for NLP), Books API, and Firebase for a seamless and scalable experience.
-                                </p>
-                                
-                                <h4 class="font-bold mb-2">Key Features:</h4>
-                                <ul class="text-gray-600 space-y-1">
-                                    User-friendly Tkinter GUI for book browsing and recommendations
-
-                                <li>Google Books API for retrieving metadata, covers, and reviews</li>
-                                <li>Gemini API (LLM) for generating personalized summaries and book suggestions</li>
-                                <li>Content-based + Embedding-based hybrid recommendation system</li>
-                                <li>Voice-based search using Google Speech-to-Text</li>
-                                <li>Admin dashboard with analytics (using Firebase/BigQuery)</li>
-                                <li>Cross-platform desktop app with cloud-powered intelligence</li>
-                                </ul>
-                            </div>
-                            
-                            <div>
-                                <h3 class="text-xl font-bold mb-4">Technical Details</h3>
-                                <div class="space-y-4">
-                                    <div>
-                                        <h4 class="font-semibold">Frontend</h4>
-                                        <p class="text-gray-600">Tkinter for GUI
-
-                                        <li>Matplotlib/Seaborn for analytics visualization</li>
-
-                                        <li>Google Fonts API (for modern UI styling in Tkinter)</li></p>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-semibold">Backend</h4>
-                                        <p class="text-gray-600"><li>Local ML models: TF-IDF (Scikit-learn), FAISS + BERT embeddings (Transformers)</li>
-
-                                        <li>Google Gemini API: Personalized recommendation explanations & natural language queries</li>
-
-                                        <li>Google Books API: Metadata, author details, and book previews</li>
-
-                                        <li>Google TTS/STT API: Text-to-speech book summaries & speech-based search</li></p>
-                                                                            </div>
-                                    <div>
-                                        <h4 class="font-semibold">Database</h4>
-                                        <p class="text-gray-600">MongoDB</p>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-semibold">Deployment</h4>
-                                        <p class="text-gray-600">Packaged as standalone app via PyInstaller
-
-                                        <li>Firebase Hosting (for backend APIs if needed)</li>
-
-                                        <li>Google Cloud Storage (book metadata/images caching)</li></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="bg-gray-50 p-6 rounded-lg">
-                            <h3 class="text-xl font-bold mb-4">Challenges & Solutions</h3>
-                            <div class="space-y-3">
-                                <div>
-                                    <h4 class="font-semibold">Challenge: Rich metadata and book availability</h4>
-                                    <p class="text-gray-600">Used Google Books API to fetch real-time metadata, book previews, and cover images.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold">Challenge: Personalization beyond keyword search</h4>
-                                    <p class="text-gray-600">Integrated Gemini API to understand user queries in natural language and provide contextual book suggestions.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold">Challenge: Making the app interactive (text)</h4>
-                                    <p class="text-gray-600">Implemented lazy loading, image optimization for faster load times.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                       
-                        </div>
-                    </div>
-                `
+        tag: "LLM NLP & Vector Embeddings",
+        image: "./static/assets/thumbnails/book_rec.jpg",
+        description: "Intelligent AI desktop application integrating Google Gemini LLM, FAISS BERT vector search, and Google Books API for contextual reading recommendations.",
+        githubUrl: "https://github.com/K-Digvijay/Python_Projects/tree/master/Recoment_system",
+        overview: `Developed an end-to-end intelligent Book Recommendation System using a hybrid model approach. Combining TF-IDF keyword matrices with FAISS vector similarity search over BERT text embeddings, the application leverages Google's Gemini API to produce context-aware recommendation rationales in real-time.`,
+        features: [
+            "Tkinter Desktop UI with responsive query filters and book cards",
+            "Google Gemini LLM Integration for natural language book summaries & reasoning",
+            "Google Books API integration for real-time metadata, high-res covers, and reviews",
+            "Speech-to-Text voice query search powered by Google Speech APIs",
+            "MongoDB integration for local library caching and user reading history",
+            "Analytics dashboard featuring Matplotlib/Seaborn reading statistics"
+        ],
+        techStack: ["Python", "Google Gemini API", "BERT Embeddings", "FAISS", "Tkinter", "MongoDB", "Google Books API", "PyInstaller"],
+        challenges: [
+            {
+                challenge: "High latency when generating real-time natural language explanations for book suggestions.",
+                solution: "Implemented asynchronous API calls and caching layers using MongoDB to deliver instant UI responses."
+            },
+            {
+                challenge: "Semantic relevance beyond exact word matches.",
+                solution: "Used BERT dense vector embeddings paired with FAISS nearest-neighbor indexing for fast semantic retrieval."
+            }
+        ]
     },
-    taskmanager: {
-        title: "Software Salary Prediction",
-        description: "This Software Salary Prediction system was built as a Streamlit web application to help users estimate software developer salaries based on their experience, education, and country. Using machine learning, the system delivers accurate salary predictions while providing data exploration and visualization tools.",
-        fullDescription: `
-                    <div class="space-y-6">
-                        <div class="h-64 bg-gradient-to-br from-green-500 to-teal-600 rounded-lg flex items-center justify-center text-8xl text-white">
-                            📱
-                        </div>
-                        
-                        <div class="grid md:grid-cols-2 gap-8">
-                            <div>
-                                <h3 class="text-xl font-bold mb-4">Project Overview</h3>
-                                <p class="text-gray-600 mb-4">
-                                    This Software Salary Prediction system was built as a Streamlit web application to help users estimate software developer salaries based on their experience, education, and country. Using machine learning, the system delivers accurate salary predictions while providing data exploration and visualization tools.
-                                </p>
-                                
-                                <h4 class="font-bold mb-2">Key Features:</h4>
-                                <ul class="text-gray-600 space-y-1">
-                                    Interactive Streamlit UI with easy navigation
-
-                                <li>Salary prediction using a trained ML model (saved_step.pkl)</li>
-
-                                <li>Data exploration dashboard with filtering and visualization</li>
-
-                                <li>User inputs: country, education, and years of experience</li>
-
-                                <li>Real-time predictions with instant feedback</li>
-                                </ul>
-                            </div>
-                            
-                            <div>
-                                <h3 class="text-xl font-bold mb-4">Technical Details</h3>
-                                <div class="space-y-4">
-                                    <div>
-                                        <h4 class="font-semibold">Frontend</h4>
-                                        <p class="text-gray-600">
-                                            <li>Streamlit for interactive web interface</li>
-                                            <li>Matplotlib/Seaborn for data visualization</li>
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-semibold">Backend</h4>
-                                        <p class="text-gray-600">
-                                            <li>Scikit-learn for preprocessing and model training</li>
-                                            <li>Trained regression model (saved with joblib/pickle)</li>
-                                            <li>Python-based API endpoints within Streamlit pages</li>
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-semibold">Database</h4>
-                                        <p class="text-gray-600">
-                                            <li>CSV dataset of developer survey responses (Stack Overflow survey)</li>
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-semibold">Deployment</h4>
-                                        <p class="text-gray-600"><li>Deployed with Streamlit</li>
-
-                                        <li>Easily containerized via Docker for scalability</li></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="bg-gray-50 p-6 rounded-lg">
-                            <h3 class="text-xl font-bold mb-4">Challenges & Solutions</h3>
-                            <div class="space-y-3">
-                                <div>
-                                    <h4 class="font-semibold">Challenge: Handling diverse user input (countries, education levels)</h4>
-                                    <p class="text-gray-600">Applied preprocessing and categorical encoding to normalize input data.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold">Challenge: Model accuracy across varying experience ranges</h4>
-                                    <p class="text-gray-600">Tuned regression models and validated results on multiple splits for robustness.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold">Challenge: Providing a user-friendly interface for non-technical users</h4>
-                                    <p class="text-gray-600">Built a clean, interactive Streamlit UI with separate pages for exploration and prediction.</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        
-                    </div>
-                `
+    salarypred: {
+        title: "Software Engineer Salary Predictor",
+        tag: "Machine Learning & Streamlit",
+        image: "./static/assets/thumbnails/salary_pred.jpg",
+        description: "Production Machine Learning regression model web application built with Streamlit and containerized with Docker, estimating global software engineering compensation.",
+        githubUrl: "https://github.com/K-Digvijay/Software_Salary_Prediction",
+        overview: `A complete data science workflow built using Stack Overflow developer survey data. The system cleans, normalizes, and trains non-linear regression ML models (Random Forest / Decision Tree Regressor) to predict developer salaries globally based on experience, country, and education level.`,
+        features: [
+            "Interactive Streamlit Web Dashboard with real-time salary estimation",
+            "Exploratory Data Analysis (EDA) module with customizable charts & filters",
+            "Tuned machine learning regression model saved via Joblib/Pickle",
+            "Categorical data encoding and out-of-bounds input handle filtering",
+            "Fully containerized with Docker for cross-environment reproducibility"
+        ],
+        techStack: ["Python", "Streamlit", "Scikit-Learn", "Pandas", "NumPy", "Matplotlib/Seaborn", "Docker"],
+        challenges: [
+            {
+                challenge: "Extreme variance in developer salary data across developing vs developed nations.",
+                solution: "Applied outlier elimination algorithms, group aggregation, and categorical encoding on low-frequency countries."
+            },
+            {
+                challenge: "Ensuring non-technical users can perform custom scenario exploration.",
+                solution: "Architected a dual-page Streamlit application separating predictive inference from interactive EDA charts."
+            }
+        ]
     },
-    analytics: {
-        title: "SAHAYAK Teacher Assistant",
-        description: "A comprehensive teacher assistant app designed to simplify lesson planning and boost engagement.",
-        fullDescription: `
-                    <div class="space-y-6">
-                        <div class="h-64 bg-gradient-to-br from-orange-500 to-red-600 rounded-lg flex items-center justify-center text-8xl text-white">
-                            📊
-                        </div>
-                        
-                        <div class="grid md:grid-cols-2 gap-8">
-                            <div>
-                                <h3 class="text-xl font-bold mb-4">Project Overview</h3>
-                                <p class="text-gray-600 mb-4">
-                                    SAHAYAK is a comprehensive teacher assistant app designed to simplify lesson planning and boost engagement. With features like QR-based PDFs, voice input, multimodal story export, student profiles, and analytics, it empowers educators to deliver modern, inclusive learning experiences
-                                </p>
-                                
-                                <h4 class="font-bold mb-2">Key Features:</h4>
-                                <ul class="text-gray-600 space-y-1">
-                                    <li>PDF generation for lessons and resources</li>
-
-                                    <li>Voice input to quickly create content hands-free</li>
-
-                                    <li>Multimodal story export (text, images, audio) for diverse learning styles</li>
-
-                                    <li>Student profile management for tracking progress</li>
-
-                                    <li>Built-in analytics to monitor engagement and effectiveness</li>
-                                </ul>
-                            </div>
-                            
-                            <div>
-                                <h3 class="text-xl font-bold mb-4">Technical Details</h3>
-                                <div class="space-y-4">
-                                    <div>
-                                        <h4 class="font-semibold">Frontend</h4>
-                                        <p class="text-gray-600"><li>Typescript, JavaScript, React</li></p>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-semibold">Backend</h4>
-                                        <p class="text-gray-600"><li>Python, Flask, Firebase</li></p>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-semibold">Database</h4>
-                                        <p class="text-gray-600"><li>Firebase, Firestore</li></p>
-                                    </div>
-                                
-                                    <div>
-                                        <h4 class="font-semibold">Deployment</h4>
-                                        <p class="text-gray-600"><li>Docker, GCP</li></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="bg-gray-50 p-6 rounded-lg">
-                            <h3 class="text-xl font-bold mb-4">Challenges & Solutions</h3>
-                            <div class="space-y-3">
-                                <div>
-                                    <h4 class="font-semibold">Challenge: Supporting varied learning styles</h4>
-                                    <p class="text-gray-600">IOffered multimodal export combining text, images, and audio to engage diverse learners.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold">Challenge: Managing student personalization</h4>
-                                    <p class="text-gray-600">Introduced student profiles and analytics to tailor teaching based on individual needs and monitor engagement.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold">Challenge: Inclusive, accessible content</h4>
-                                    <p class="text-gray-600">Integrated translation, text-to-speech, and doodle/image generation to support multiple languages and sensory modalities.</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        
-                        </div>
-                    </div>
-                `
+    sahayak: {
+        title: "SAHAYAK AI Teacher Assistant",
+        tag: "Google Cloud Hackathon • Multimodal AI",
+        image: "./static/assets/thumbnails/sahayak.jpg",
+        description: "Multimodal AI assistant designed for educators featuring automated lesson plans, voice input, QR-coded PDF generation, and student engagement analytics.",
+        githubUrl: "https://github.com/K-Digvijay/Sahayak-App_hackathon_GoogleClout_H2S",
+        overview: `Built for the Google Cloud Hackathon, SAHAYAK is an intelligent teacher copilot that simplifies lesson content generation, multi-sensory story exports, student profile tracking, and classroom engagement analysis.`,
+        features: [
+            "Multimodal Content Generation: Combines text, audio, and image story outputs",
+            "Hands-Free Voice STT: Voice input command interface for quick lesson drafting",
+            "QR Code & PDF Generator for seamless offline distribution to students",
+            "Student Progress Tracker with Firestore database backend",
+            "Built-in engagement analytics dashboard for monitoring student growth"
+        ],
+        techStack: ["React", "TypeScript", "Python", "Flask", "Google Cloud Platform", "Firebase / Firestore", "Docker"],
+        challenges: [
+            {
+                challenge: "Packaging complex multimodal outputs (text, audio, generated visual cards) into accessible formats.",
+                solution: "Integrated dynamic PDF rendering with embedded QR codes linking directly to cloud-hosted audio files."
+            },
+            {
+                challenge: "Supporting low-bandwidth environments for rural educators.",
+                solution: "Designed lightweight web components and client-side caching for offline PDF availability."
+            }
+        ]
     }
 };
 
 function openProject(projectId) {
-    const project = projectData[projectId];
-    if (project) {
-        document.getElementById('modal-title').textContent = project.title;
-        document.getElementById('modal-content').innerHTML = project.fullDescription;
-        document.getElementById('project-modal').classList.remove('hidden');
-        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    const p = projectData[projectId];
+    if (!p) return;
+
+    const modal = document.getElementById('project-modal');
+    const modalContainer = document.getElementById('modal-content-container');
+
+    if (modal && modalContainer) {
+        modalContainer.innerHTML = `
+            <div class="relative">
+                <img src="${p.image}" alt="${p.title}" class="w-full h-64 object-cover rounded-xl mb-6 border border-slate-800" />
+                <span class="absolute top-4 left-4 bg-cyan-950/80 text-cyan-400 text-xs font-semibold px-3 py-1.5 rounded-full border border-cyan-500/40 backdrop-blur-md">
+                    ${p.tag}
+                </span>
+            </div>
+
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                <div>
+                    <h3 class="text-2xl md:text-3xl font-bold text-white mb-1">${p.title}</h3>
+                    <p class="text-slate-400 text-sm">${p.description}</p>
+                </div>
+                ${p.githubUrl ? `
+                    <a href="${p.githubUrl}" target="_blank" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-cyan-400 text-sm font-semibold rounded-lg border border-slate-700 transition-all shrink-0">
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                        View Source Code
+                    </a>
+                ` : ''}
+            </div>
+
+            <div class="space-y-6">
+                <div>
+                    <h4 class="text-lg font-semibold text-slate-200 mb-2 border-b border-slate-800 pb-2">Project Overview</h4>
+                    <p class="text-slate-300 text-sm leading-relaxed">${p.overview}</p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold text-slate-200 mb-3 border-b border-slate-800 pb-2">Key Features</h4>
+                    <ul class="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-slate-300">
+                        ${p.features.map(f => `<li class="flex items-start gap-2"><span class="text-cyan-400">▹</span> <span>${f}</span></li>`).join('')}
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold text-slate-200 mb-3 border-b border-slate-800 pb-2">Technologies Used</h4>
+                    <div class="flex flex-wrap gap-2">
+                        ${p.techStack.map(t => `<span class="bg-slate-800 text-cyan-300 border border-slate-700/80 px-3 py-1 rounded-md text-xs font-mono">${t}</span>`).join('')}
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold text-slate-200 mb-3 border-b border-slate-800 pb-2">Engineering Challenges & Solutions</h4>
+                    <div class="space-y-3">
+                        ${p.challenges.map(c => `
+                            <div class="bg-slate-900/90 border border-slate-800 p-4 rounded-xl">
+                                <p class="text-xs font-semibold text-rose-400 mb-1">CHALLENGE: ${c.challenge}</p>
+                                <p class="text-xs text-emerald-300">SOLUTION: ${c.solution}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            </div>
+        `;
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
     }
 }
 
 function closeProject() {
-    document.getElementById('project-modal').classList.add('hidden');
-    document.body.style.overflow = 'auto'; // Restore scrolling
+    const modal = document.getElementById('project-modal');
+    if (modal) {
+        modal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
 }
 
-// Close modal when clicking outside
-document.getElementById('project-modal').addEventListener('click', function (e) {
-    if (e.target === this) {
-        closeProject();
+// Modal Backdrop Click & Escape Key Listener
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('project-modal');
+    if (modal) {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeProject();
+        });
     }
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeProject();
+    });
 });
-
-// Close modal with Escape key
-document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') {
-        closeProject();
-    }
-});
-
-(function () { function c() { var b = a.contentDocument || a.contentWindow.document; if (b) { var d = b.createElement('script'); d.innerHTML = "window.__CF$cv$params={r:'97071052d5deff70',t:'MTc1NTQxMTYwOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);"; b.getElementsByTagName('head')[0].appendChild(d) } } if (document.body) { var a = document.createElement('iframe'); a.height = 1; a.width = 1; a.style.position = 'absolute'; a.style.top = 0; a.style.left = 0; a.style.border = 'none'; a.style.visibility = 'hidden'; document.body.appendChild(a); if ('loading' !== document.readyState) c(); else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c); else { var e = document.onreadystatechange || function () { }; document.onreadystatechange = function (b) { e(b); 'loading' !== document.readyState && (document.onreadystatechange = e, c()) } } } })();
-
-
